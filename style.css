@@ -12,3 +12,5 @@ p{margin:0 0 12px}ul{margin:0 0 12px;padding-left:22px}li{margin:4px 0}
 .pill{display:inline-block;background:var(--tint);color:#0A4F42;border-radius:999px;padding:2px 10px;font-size:13px;margin:0 6px 6px 0}
 a{color:var(--c)}footer{font-size:13px;color:var(--mute);text-align:center;margin-top:28px}
 table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 14px}td,th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}th{color:var(--mute);font-weight:500}
+
+.btn{display:inline-block;background:var(--c);color:#fff;text-decoration:none;border-radius:10px;padding:10px 18px;font-weight:600}.btn:hover{opacity:.92}
