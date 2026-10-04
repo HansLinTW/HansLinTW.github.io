@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YXK65GPQK0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -56,10 +56,10 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
     </ul>
     <div class="tip">安裝過程中，試算表的「安裝精靈」會自動檢查每一步，做錯會告訴你哪裡要改。卡住了也可以<a href="#help">請我們代裝</a>。</div>
     <ol class="toc">
-      <li><a href="#s1">建立副本</a></li>
-      <li><a href="#s2">建立 Google Cloud 專案</a></li>
+      <li><a href="#s1">建立 Google Cloud 專案</a></li>
       <li><a href="#oauth">設定 OAuth 同意畫面</a></li>
-      <li><a href="#s4">把專案連結到系統</a></li>
+      <li><a href="#s3">記下專案編號</a></li>
+      <li><a href="#s4">建立副本並連結專案</a></li>
       <li><a href="#s5">開啟 Apps Script API</a></li>
       <li><a href="#s6">安裝精靈：建立資料庫</a></li>
       <li><a href="#s7">部署兩個網頁</a></li>
@@ -88,21 +88,15 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
   </section>
 
   <section class="card step" id="s1"><div class="num">1</div><div>
-    <h2>建立副本</h2>
-    <p>用準備好的 Google 帳號登入後，點授權金鑰 Email 裡的「<b>建立副本</b>」按鈕，再按 Google 畫面上的「<b>建立副本</b>」。系統程式會一起複製到你的雲端硬碟。</p>
-    <p>建立後先不用動試算表內容。請在試算表上方選「<b>擴充功能 › Apps Script</b>」，開啟後保留這個分頁，等一下會用到。</p>
-  </div></section>
-
-  <section class="card step" id="s2"><div class="num">2</div><div>
     <h2>建立 Google Cloud 專案並啟用 API</h2>
-    <p>系統需要一個屬於你自己的 Google Cloud 專案，才能自動接收新版本與法規參數。<b>不需要付費，也不用綁信用卡。</b></p>
+    <p>系統需要一個屬於你自己的 Google Cloud 專案，才能自動接收新版本與法規參數。<b>不需要付費，也不用綁信用卡。</b>請用之後要存放資料的那個 Google 帳號登入。</p>
     <ol>
-      <li>開啟 <a href="https://console.cloud.google.com/projectcreate">建立專案</a>。專案名稱只能用英文、數字和連字號，例如 <span class="kbd">lr-slip-acme</span>，按「建立」。</li>
-      <li>開啟 <a href="https://console.cloud.google.com/flows/enableapi?apiid=script.googleapis.com,drive.googleapis.com,sheets.googleapis.com,docs.googleapis.com">一次啟用 4 個 API</a>。上方確認選的是剛建立的專案，按「下一步」→「啟用」。會啟用 Apps Script、Drive、Sheets、Docs 這 4 個 API。</li>
+      <li>開啟 <a href="https://console.cloud.google.com/projectcreate" target="_blank">建立專案</a>。專案名稱只能用英文、數字和連字號，例如 <span class="kbd">lr-slip-acme</span>，按「建立」。</li>
+      <li>開啟 <a href="https://console.cloud.google.com/flows/enableapi?apiid=script.googleapis.com,drive.googleapis.com,sheets.googleapis.com,docs.googleapis.com" target="_blank">一次啟用 4 個 API</a>。上方確認選的是剛建立的專案，按「下一步」→「啟用」。會啟用 Apps Script、Drive、Sheets、Docs 這 4 個 API。</li>
     </ol>
   </div></section>
 
-  <section class="card step" id="oauth"><div class="num">3</div><div>
+  <section class="card step" id="oauth"><div class="num">2</div><div>
     <h2>設定 OAuth 同意畫面</h2>
     <p>開啟 <a href="https://console.cloud.google.com/auth/overview">OAuth 同意畫面</a>，按「開始」，依你的帳號類型填寫：</p>
     <table>
@@ -124,17 +118,25 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
     </ol>
   </div></section>
 
+  <section class="card step" id="s3"><div class="num">3</div><div>
+    <h2>記下專案編號</h2>
+    <p>開啟 <a href="https://console.cloud.google.com/home/dashboard" target="_blank">Cloud 主控台首頁</a>，確認上方選的是剛建立的專案，在「專案資訊」找到「<b>專案編號</b>」並複製。</p>
+    <div class="tip">專案編號是一串<b>數字</b>（例如 <span class="kbd">123456789012</span>），不是英文的專案 ID。先把它貼到記事本，下一步會用到。Google Cloud 的設定到這裡就完成了。</div>
+  </div></section>
+
   <section class="card step" id="s4"><div class="num">4</div><div>
-    <h2>把專案連結到系統</h2>
+    <h2>建立副本，並連結 Cloud 專案</h2>
     <ol>
-      <li>回到 <a href="https://console.cloud.google.com/home/dashboard">Cloud 主控台首頁</a>，複製「<b>專案編號</b>」。專案編號是一串數字，不是英文的專案 ID。</li>
-      <li>切到步驟 1 開啟的 Apps Script 分頁，左側點齒輪「<b>專案設定</b>」→「Google Cloud Platform (GCP) 專案」→「<b>變更專案</b>」，貼上專案編號，按「設定專案」。</li>
+      <li>點授權金鑰 Email 裡的「<b>建立副本</b>」按鈕，再按 Google 畫面上的「<b>建立副本</b>」。系統程式會一起複製到你的雲端硬碟。試算表內容先不用動。</li>
+      <li>在剛建立的試算表上方選「<b>擴充功能 › Apps Script</b>」。</li>
+      <li>Apps Script 左側點齒輪「<b>專案設定</b>」→ 往下找到「Google Cloud Platform (GCP) 專案」→「<b>變更專案</b>」，貼上步驟 3 記下的專案編號，按「<b>設定專案</b>」。</li>
     </ol>
+    <p>這個 Apps Script 分頁請先保留，步驟 7 部署時會再用到。</p>
   </div></section>
 
   <section class="card step" id="s5"><div class="num">5</div><div>
     <h2>開啟 Apps Script API</h2>
-    <p>開啟 <a href="https://script.google.com/home/usersettings">Apps Script 使用者設定</a>，把「Google Apps Script API」切換為「<b>開啟</b>」。</p>
+    <p>開啟 <a href="https://script.google.com/home/usersettings" target="_blank">Apps Script 使用者設定</a>，把「Google Apps Script API」切換為「<b>開啟</b>」。</p>
   </div></section>
 
   <section class="card step" id="s6"><div class="num">6</div><div>
@@ -142,20 +144,20 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
     <ol>
       <li>回到試算表，重新整理頁面，上方會出現「勞報單」選單。選「<b>勞報單 › 安裝精靈</b>」。</li>
       <li>Google 會要求授權：選你的帳號 → 若出現「<b>Google 尚未驗證這個應用程式</b>」，按「進階」→「前往 勞報單系統（不安全）」→ 勾選全部權限 →「繼續」。</li>
-      <li>右側的安裝精靈會檢查前面的步驟。前三項都打勾後，在「建立資料庫與資料夾」按「<b>建立</b>」。</li>
+      <li>右側的安裝精靈會檢查前面的步驟。前面幾項都打勾後，在「建立資料庫與資料夾」按「<b>建立</b>」。精靈最上方的「<b>重新檢查</b>」按鈕隨時可以按。</li>
     </ol>
     <div class="tip"><b>為什麼會顯示「尚未驗證」？</b>因為這個程式是複製到你自己帳號裡執行的，Google 把它視為你自己寫的程式，所以不會經過 Google 審查。資料只在你的帳號裡流動，不會送到第三方。系統使用的權限與用途，請見<a href="privacy.html">隱私權政策</a>。</div>
   </div></section>
 
   <section class="card step" id="s7"><div class="num">7</div><div>
     <h2>部署兩個網頁</h2>
-    <p>回到 Apps Script 分頁，右上角「<b>部署 › 新增部署</b>」，在「選取類型」旁的齒輪選「<b>網頁應用程式</b>」。這個動作做<b>兩次</b>：</p>
+    <p>回到步驟 4 的 Apps Script 分頁（若已關掉，從試算表「擴充功能 › Apps Script」再開一次），右上角「<b>部署 › 新增部署</b>」，在「選取類型」旁的齒輪選「<b>網頁應用程式</b>」。這個動作做<b>兩次</b>：</p>
     <table>
       <tr><th></th><th>說明</th><th>執行身分</th><th>具有存取權的使用者</th></tr>
       <tr><td>第 1 個</td><td>所得人填寫頁</td><td>我</td><td><b>所有人</b></td></tr>
       <tr><td>第 2 個</td><td>企業後台</td><td>我</td><td><b>網域內的使用者</b><br><span style="font-size:13px;color:var(--mute)">個人 Gmail 選「擁有 Google 帳戶的使用者」</span></td></tr>
     </table>
-    <p>兩個都部署好後，回到安裝精靈按「<b>重新檢查</b>」。精靈會自動找到兩個網址並填入設定，不用自己複製貼上。</p>
+    <p>兩個都部署好後，回到安裝精靈，按「部署兩個網頁」這一步裡的「<b>重新檢查</b>」（精靈最上方也有一顆）。精靈會自動找到兩個網址並填入設定，不用自己複製貼上。</p>
     <div class="warn">「執行身分」兩個都要選「我」。如果選成「存取網頁應用程式的使用者」，所得人會無法開啟填寫頁。</div>
   </div></section>
 
