@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YXK65GPQK0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YXK65GPQK0');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>安裝說明｜勞報單簽核系統</title>
+<meta name="description" content="勞報單簽核系統自行安裝說明：建立副本、Google Cloud 專案、部署與授權金鑰，約 30 分鐘完成。">
+<link rel="stylesheet" href="style.css">
+<style>
+.step{display:flex;gap:14px;align-items:flex-start}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-top:2px}
+.step h2{margin-top:0}
+.step>div:not(.num){min-width:0;flex:1}
+td:first-child{white-space:nowrap}
+table{table-layout:auto}td,th{overflow-wrap:anywhere}
+.kbd{background:#EEF2F0;border-radius:5px;padding:1px 6px;font-family:ui-monospace,Menlo,monospace;font-size:14px;word-break:break-all}
+.tip{background:var(--tint);border-radius:10px;padding:10px 14px;font-size:14px;margin:8px 0 12px}
+.warn{background:#FFF4DB;color:#6B4100;border-radius:10px;padding:10px 14px;font-size:14px;margin:8px 0 12px}
+.toc{columns:2;column-gap:24px;padding-left:20px}
+@media (max-width:560px){.toc{columns:1}.step{gap:10px}td:first-child{white-space:normal}td,th{padding:6px 4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="index.html" style="display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none"><div class="mk">勞</div><div><b>勞報單簽核系統</b><span>安裝說明</span></div></a></header>
+
+  <section class="card">
+    <h1>自行安裝說明</h1>
+    <p class="lead">約 30 分鐘。全程在貴公司自己的 Google 帳號中操作，系統供應商看不到你的任何資料。</p>
+    <h2>開始前請準備</h2>
+    <ul>
+      <li><b>一個 Google 帳號</b>：之後所有單據、證件影像都會存在這個帳號的雲端硬碟。建議用公司的 Google Workspace 帳號（例如 <span class="kbd">admin@貴公司網域</span>）；個人 Gmail 也可以。</li>
+      <li><b>授權金鑰與「建立副本」連結</b>：購買或申請試用後，會以 Email 寄給你。</li>
+      <li>用<b>電腦</b>操作，建議使用 Chrome，並只登入這一個 Google 帳號（多帳號同時登入容易出錯）。</li>
+    </ul>
+    <div class="tip">安裝過程中，試算表的「安裝精靈」會自動檢查每一步，做錯會告訴你哪裡要改。卡住了也可以<a href="#help">請我們代裝</a>。</div>
+    <ol class="toc">
+      <li><a href="#s1">建立副本</a></li>
+      <li><a href="#s2">建立 Google Cloud 專案</a></li>
+      <li><a href="#oauth">設定 OAuth 同意畫面</a></li>
+      <li><a href="#s4">把專案連結到系統</a></li>
+      <li><a href="#s5">開啟 Apps Script API</a></li>
+      <li><a href="#s6">安裝精靈：建立資料庫</a></li>
+      <li><a href="#s7">部署兩個網頁</a></li>
+      <li><a href="#s8">輸入金鑰，完成</a></li>
+    </ol>
+  </section>
+
+  <section class="card step" id="s1"><div class="num">1</div><div>
+    <h2>建立副本</h2>
+    <p>用準備好的 Google 帳號登入後，點 Email 裡的「建立副本」連結，按「<b>建立副本</b>」。系統程式會一起複製到你的雲端硬碟。</p>
+    <p>建立後先不用動試算表內容。請在試算表上方選「<b>擴充功能 › Apps Script</b>」，開啟後保留這個分頁，等一下會用到。</p>
+  </div></section>
+
+  <section class="card step" id="s2"><div class="num">2</div><div>
+    <h2>建立 Google Cloud 專案並啟用 API</h2>
+    <p>系統需要一個屬於你自己的 Google Cloud 專案，才能自動接收新版本與法規參數。<b>不需要付費，也不用綁信用卡。</b></p>
+    <ol>
+      <li>開啟 <a href="https://console.cloud.google.com/projectcreate">建立專案</a>。專案名稱只能用英文、數字和連字號，例如 <span class="kbd">lr-slip-acme</span>，按「建立」。</li>
+      <li>開啟 <a href="https://console.cloud.google.com/flows/enableapi?apiid=script.googleapis.com,drive.googleapis.com,sheets.googleapis.com,docs.googleapis.com">一次啟用 4 個 API</a>。上方確認選的是剛建立的專案，按「下一步」→「啟用」。會啟用 Apps Script、Drive、Sheets、Docs 這 4 個 API。</li>
+    </ol>
+  </div></section>
+
+  <section class="card step" id="oauth"><div class="num">3</div><div>
+    <h2>設定 OAuth 同意畫面</h2>
+    <p>開啟 <a href="https://console.cloud.google.com/auth/overview">OAuth 同意畫面</a>，按「開始」，依你的帳號類型填寫：</p>
+    <table>
+      <tr><th></th><th>公司 Workspace 帳號</th><th>個人 Gmail</th></tr>
+      <tr><td>目標對象</td><td><b>內部</b></td><td><b>外部</b></td></tr>
+      <tr><td>應用程式名稱</td><td colspan="2"><span class="kbd">勞報單系統</span>（可用中文）</td></tr>
+      <tr><td>使用者支援 Email、聯絡資訊</td><td colspan="2">你自己的 Email</td></tr>
+    </table>
+    <p><b>個人 Gmail 還要多做兩件事：</b></p>
+    <ol>
+      <li>在「品牌」頁填入下列網址，<b>不要上傳標誌</b>（上傳標誌會需要 Google 審查）：
+        <table>
+          <tr><td>應用程式首頁</td><td><span class="kbd">https://hanslintw.github.io/</span></td></tr>
+          <tr><td>隱私權政策</td><td><span class="kbd">https://hanslintw.github.io/privacy.html</span></td></tr>
+          <tr><td>服務條款</td><td><span class="kbd">https://hanslintw.github.io/terms.html</span></td></tr>
+          <tr><td>授權網域</td><td><span class="kbd">hanslintw.github.io</span></td></tr>
+        </table></li>
+      <li>到「目標對象」按「<b>發布應用程式</b>」，切換為「正式版」。不切換的話，授權每 7 天就會失效。</li>
+    </ol>
+  </div></section>
+
+  <section class="card step" id="s4"><div class="num">4</div><div>
+    <h2>把專案連結到系統</h2>
+    <ol>
+      <li>回到 <a href="https://console.cloud.google.com/home/dashboard">Cloud 主控台首頁</a>，複製「<b>專案編號</b>」。專案編號是一串數字，不是英文的專案 ID。</li>
+      <li>切到步驟 1 開啟的 Apps Script 分頁，左側點齒輪「<b>專案設定</b>」→「Google Cloud Platform (GCP) 專案」→「<b>變更專案</b>」，貼上專案編號，按「設定專案」。</li>
+    </ol>
+  </div></section>
+
+  <section class="card step" id="s5"><div class="num">5</div><div>
+    <h2>開啟 Apps Script API</h2>
+    <p>開啟 <a href="https://script.google.com/home/usersettings">Apps Script 使用者設定</a>，把「Google Apps Script API」切換為「<b>開啟</b>」。</p>
+  </div></section>
+
+  <section class="card step" id="s6"><div class="num">6</div><div>
+    <h2>開啟安裝精靈，建立資料庫</h2>
+    <ol>
+      <li>回到試算表，重新整理頁面，上方會出現「勞報單」選單。選「<b>勞報單 › 安裝精靈</b>」。</li>
+      <li>Google 會要求授權：選你的帳號 → 若出現「<b>Google 尚未驗證這個應用程式</b>」，按「進階」→「前往 勞報單系統（不安全）」→ 勾選全部權限 →「繼續」。</li>
+      <li>右側的安裝精靈會檢查前面的步驟。前三項都打勾後，在「建立資料庫與資料夾」按「<b>建立</b>」。</li>
+    </ol>
+    <div class="tip"><b>為什麼會顯示「尚未驗證」？</b>因為這個程式是複製到你自己帳號裡執行的，Google 把它視為你自己寫的程式，所以不會經過 Google 審查。資料只在你的帳號裡流動，不會送到第三方。系統使用的權限與用途，請見<a href="privacy.html">隱私權政策</a>。</div>
+  </div></section>
+
+  <section class="card step" id="s7"><div class="num">7</div><div>
+    <h2>部署兩個網頁</h2>
+    <p>回到 Apps Script 分頁，右上角「<b>部署 › 新增部署</b>」，在「選取類型」旁的齒輪選「<b>網頁應用程式</b>」。這個動作做<b>兩次</b>：</p>
+    <table>
+      <tr><th></th><th>說明</th><th>執行身分</th><th>具有存取權的使用者</th></tr>
+      <tr><td>第 1 個</td><td>所得人填寫頁</td><td>我</td><td><b>所有人</b></td></tr>
+      <tr><td>第 2 個</td><td>企業後台</td><td>我</td><td><b>網域內的使用者</b><br><span style="font-size:13px;color:var(--mute)">個人 Gmail 選「擁有 Google 帳戶的使用者」</span></td></tr>
+    </table>
+    <p>兩個都部署好後，回到安裝精靈按「<b>重新檢查</b>」。精靈會自動找到兩個網址並填入設定，不用自己複製貼上。</p>
+    <div class="warn">「執行身分」兩個都要選「我」。如果選成「存取網頁應用程式的使用者」，所得人會無法開啟填寫頁。</div>
+  </div></section>
+
+  <section class="card step" id="s8"><div class="num">8</div><div>
+    <h2>輸入授權金鑰，完成</h2>
+    <p>在安裝精靈最後一步貼上金鑰，按「驗證並啟用」。全部打勾後按「<b>開啟企業後台</b>」，建議把後台網址加入瀏覽器書籤。</p>
+    <p>接著到後台「設定 › 成員與權限」加入經辦與財務人員，到「設定 › 公司資料」填好公司名稱、統一編號等資料，就可以開始開單。</p>
+    <div class="tip">之後有新版本時，管理員會在後台看到提示，按一下就能完成更新。資料不會受影響。</div>
+  </div></section>
+
+  <section class="card" id="help">
+    <h2>常見問題</h2>
+    <p><b>為什麼一定要建立 Google Cloud 專案？</b><br>系統要靠它安全地更新你帳號裡的程式。法規參數（例如健保費率）調整或功能更新時，你只要在後台按一下更新，不用重新安裝。</p>
+    <p><b>精靈說「需要重新同意權限」？</b><br>連結 Cloud 專案後，Google 會要求重新授權，這是正常的。關閉側邊欄，從選單重新開啟安裝精靈即可。</p>
+    <p><b>「開啟 Apps Script API」之後還是顯示沒開？</b><br>這個設定約需 1–5 分鐘才會生效，稍等再按「重新檢查」。</p>
+    <p><b>系統供應商看得到我的資料嗎？</b><br>看不到。所有資料都存在你自己的 Google 帳號，授權中心只會收到每月張數這類統計數字，詳見<a href="privacy.html">隱私權政策</a>。</p>
+    <h2>需要協助或代裝</h2>
+    <p>我們提供<b>代為安裝</b>服務（另計費用）：約 30 分鐘的線上會議，由你登入自己的帳號，我們引導或代為操作，全程你都看得到。</p>
+    <p>聯絡：<a href="mailto:lr@remonnomad.com">lr@remonnomad.com</a></p>
+  </section>
+  <footer>© 2026 REMON nomad・<a href="index.html">首頁</a>・<a href="privacy.html">隱私權政策</a>・<a href="terms.html">服務條款</a></footer>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head><!-- Google tag (gtag.js) -->
+<head>  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YXK65GPQK0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -425,6 +425,9 @@ function calcWithholding_(input, rules, consts) {
       else if (l.limit && l.monthSent >= Math.ceil(l.limit * 0.8))
         h = '<div class="note warn">本月已發送 ' + l.monthSent + ' 張，「' + esc(l.plan) + '」方案每月上限 ' + l.limit + ' 張。</div>';
     }
+    var ins = S.boot && S.boot.install;
+    if (!h && ins && !ins.ok)
+      h = '<div class="note warn"><b>安裝尚未完成。</b>系統更新與部分功能需要完成全部安裝步驟。請在試算表開啟「勞報單 › 安裝精靈」，依畫面完成剩下的步驟。</div>';
     var up = S.boot && S.boot.update;
     if (!h && up && (up.available || up.pending) && !(S.view === 'settings' && S.st.tab === 'update'))
       h = '<div class="note info">' + (up.pending ? '系統更新等待完成授權。' : '有新版本 v' + esc(up.latest.version) + ' 可以更新。') +
