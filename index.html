@@ -12,8 +12,31 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>勞報單簽核系統</title>
-<meta name="description" content="在自己的 Google 雲端完成勞務報酬單的開立、簽署、扣繳試算與歸檔。">
+<!-- SEO -->
+<title>勞報單簽核系統｜勞務報酬單線上簽署、二代健保與扣繳自動試算</title>
+<meta name="description" content="給個人工作室與小型公司的勞務報酬單系統：輸入姓名金額、傳 LINE 連結，所得人手機簽名，二代健保補充保費與所得稅自動試算，PDF 自動歸檔。資料存在自己的 Google 雲端，免費試用 180 天。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://hanslintw.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0E6B5A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="勞報單簽核系統｜REMON nomad">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="勞報單簽核系統｜勞務報酬單線上簽署、二代健保與扣繳自動試算">
+<meta property="og:description" content="給個人工作室與小型公司的勞務報酬單系統：輸入姓名金額、傳 LINE 連結，所得人手機簽名，二代健保補充保費與所得稅自動試算，PDF 自動歸檔。資料存在自己的 Google 雲端，免費試用 180 天。">
+<meta property="og:url" content="https://hanslintw.github.io/">
+<meta property="og:image" content="https://hanslintw.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="勞報單簽核系統｜勞務報酬單線上簽署、二代健保與扣繳自動試算">
+<meta name="twitter:description" content="給個人工作室與小型公司的勞務報酬單系統：輸入姓名金額、傳 LINE 連結，所得人手機簽名，二代健保補充保費與所得稅自動試算，PDF 自動歸檔。資料存在自己的 Google 雲端，免費試用 180 天。">
+<meta name="twitter:image" content="https://hanslintw.github.io/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"REMON nomad","url":"https://hanslintw.github.io/","email":"lr@remonnomad.com","logo":"https://hanslintw.github.io/apple-touch-icon.png"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"勞報單簽核系統","applicationCategory":"BusinessApplication","operatingSystem":"Web（Google 試算表／Google Apps Script）","url":"https://hanslintw.github.io/","image":"https://hanslintw.github.io/og-image.png","inLanguage":"zh-TW","description":"給個人工作室與小型公司的勞務報酬單系統：線上開單、所得人手機簽署、二代健保補充保費與所得稅自動試算、PDF 自動歸檔，資料存放在自己的 Google 雲端。","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD","description":"免費試用 180 天，每月 20 張"},"publisher":{"@type":"Organization","name":"REMON nomad"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"勞報單簽核系統要收費嗎？","acceptedAnswer":{"@type":"Answer","text":"目前提供 180 天免費試用，期間每月可發送 20 張勞務報酬單。正式方案請來信 lr@remonnomad.com 洽詢。"}},{"@type":"Question","name":"勞報單和所得人的資料會存在哪裡？","acceptedAnswer":{"@type":"Answer","text":"全部存放在貴公司自己的 Google 試算表與 Google 雲端硬碟，包括身分證、存摺影像與簽名。系統供應商無法存取。"}},{"@type":"Question","name":"二代健保補充保費和所得稅會自動計算嗎？","acceptedAnswer":{"@type":"Answer","text":"會。系統依所得類別（執行業務 9A、稿費講演 9B、兼職薪資 50、其他所得 92）與金額，自動判斷是否需要扣繳並試算實付金額；法規參數調整時由系統自動更新。"}},{"@type":"Question","name":"所得人需要下載 App 或註冊帳號嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。所得人用手機打開 LINE 或 Email 收到的連結，就能上傳證件、填寫帳戶並手寫簽名，約 3 分鐘完成。"}},{"@type":"Question","name":"外籍人士可以使用嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。支援居留證統一證號，並由所得人自行申報當年度是否在台居留滿 183 天。"}},{"@type":"Question","name":"需要會寫程式才能安裝嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。依安裝說明操作約 30 分鐘完成，試算表內的安裝精靈會逐步檢查每個步驟；也可以請我們代為安裝。"}}]}</script>
+<!-- /SEO -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,6 +48,31 @@
     <p class="lead">給個人工作室與小型公司的勞報單工具：開單、線上簽署、扣繳試算、PDF 歸檔一次完成。所得人的身分證、存摺與簽名只存放在貴公司自己的 Google 雲端硬碟。</p>
     <span class="pill">資料留在自己的雲端</span><span class="pill">二代健保、所得稅自動試算</span><span class="pill">手機簽署</span><span class="pill">企業後台</span>
     <p style="margin:14px 0 0"><a class="btn" href="demo/">立即線上試玩 →</a> <a class="btn" href="install.html#signup" style="background:#fff;color:var(--c);border:1px solid var(--c)">免費試用 180 天</a> <span style="font-size:13px;color:var(--mute)">免登入，左邊開單、右邊用「手機」簽署</span></p>
+  </section>
+
+  <section class="card">
+    <h2 style="margin-top:0">以前 vs. 現在</h2>
+    <table>
+      <tr><th style="width:5em"></th><th>流程</th></tr>
+      <tr><td>以前</td><td>印勞報單 → 寄出 → 等簽名 → 收證件影本 → 手算二代健保與扣繳 → 掃描歸檔</td></tr>
+      <tr><td><b>現在</b></td><td><b>輸入姓名和金額 → 傳 LINE 連結 → 對方手機簽完 → PDF 自動歸檔</b></td></tr>
+    </table>
+    <h2>適合誰</h2>
+    <ul>
+      <li>常請攝影師、設計師、講師、工讀生的<b>個人工作室與小型公司</b></li>
+      <li>每月要處理數張到數百張<b>勞務報酬單</b>，不想再紙本往返的經辦與會計</li>
+      <li>重視個資，希望證件與存摺影像<b>只存在自己雲端</b>的團隊</li>
+    </ul>
+  </section>
+
+  <section class="card" id="faq">
+    <h2 style="margin-top:0">常見問題</h2>
+    <details><summary>勞報單簽核系統要收費嗎？</summary><p>目前提供 180 天免費試用，期間每月可發送 20 張勞務報酬單。正式方案請來信 lr@remonnomad.com 洽詢。</p></details>
+    <details><summary>勞報單和所得人的資料會存在哪裡？</summary><p>全部存放在貴公司自己的 Google 試算表與 Google 雲端硬碟，包括身分證、存摺影像與簽名。系統供應商無法存取。</p></details>
+    <details><summary>二代健保補充保費和所得稅會自動計算嗎？</summary><p>會。系統依所得類別（執行業務 9A、稿費講演 9B、兼職薪資 50、其他所得 92）與金額，自動判斷是否需要扣繳並試算實付金額；法規參數調整時由系統自動更新。</p></details>
+    <details><summary>所得人需要下載 App 或註冊帳號嗎？</summary><p>不用。所得人用手機打開 LINE 或 Email 收到的連結，就能上傳證件、填寫帳戶並手寫簽名，約 3 分鐘完成。</p></details>
+    <details><summary>外籍人士可以使用嗎？</summary><p>可以。支援居留證統一證號，並由所得人自行申報當年度是否在台居留滿 183 天。</p></details>
+    <details><summary>需要會寫程式才能安裝嗎？</summary><p>不用。依<a href="install.html">安裝說明</a>操作約 30 分鐘完成，試算表內的安裝精靈會逐步檢查每個步驟；也可以請我們代為安裝。</p></details>
   </section>
 
   <section class="card">
