@@ -434,7 +434,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
     });
   }
 
-  /** 浮水印：斜向重複的半透明文字鋪滿整張，底部再加一條完整文字 */
+  /** 浮水印：斜向重複的半透明文字（行距加寬，不遮擋證件內容） */
   function watermark(cx, W, H, text) {
     var FONT = '"PingFang TC","Noto Sans TC","Noto Sans CJK TC","Microsoft JhengHei",sans-serif';
     var fs = Math.max(14, Math.round(Math.min(W, H) / 16));
@@ -443,21 +443,14 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
     cx.rotate(-Math.PI / 7);
     cx.font = '600 ' + fs + 'px ' + FONT;
     cx.textAlign = 'center'; cx.textBaseline = 'middle';
-    var tw = cx.measureText(text).width + fs * 3, step = fs * 3.4, R = Math.sqrt(W * W + H * H) / 2 + tw;
-    for (var y = -R, row = 0; y <= R; y += step, row++) {
+    var tw = cx.measureText(text).width + fs * 3, step = fs * 6.8, R = Math.sqrt(W * W + H * H) / 2 + tw;
+    for (var y = -Math.ceil(R / step) * step, row = 0; y <= R; y += step, row++) {
       for (var x = -R + (row % 2 ? tw / 2 : 0); x <= R; x += tw) {
         cx.lineWidth = Math.max(1, fs / 12); cx.strokeStyle = 'rgba(255,255,255,0.35)'; cx.strokeText(text, x, y);
         cx.fillStyle = 'rgba(200,30,30,0.30)'; cx.fillText(text, x, y);
       }
     }
     cx.restore();
-    var bfs = Math.max(13, Math.round(Math.min(W, H) / 22));
-    cx.font = '700 ' + bfs + 'px ' + FONT;
-    while (cx.measureText(text).width > W * 0.92 && bfs > 10) { bfs--; cx.font = '700 ' + bfs + 'px ' + FONT; }
-    var bh = Math.round(bfs * 1.9);
-    cx.fillStyle = 'rgba(0,0,0,0.62)'; cx.fillRect(0, H - bh, W, bh);
-    cx.fillStyle = '#fff'; cx.textAlign = 'center'; cx.textBaseline = 'middle';
-    cx.fillText(text, W / 2, H - bh / 2);
   }
 
   /* ---------- 3 證件 ---------- */
