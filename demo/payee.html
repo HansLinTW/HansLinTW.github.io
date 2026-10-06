@@ -70,6 +70,9 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
 .doc img.pv{width:120px;height:80px;object-fit:cover;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
 .doc .st{font-size:13px;color:var(--mute)}
 .doc .st.ok{color:var(--ok)}
+.doc .st.warn{color:#9A6700}
+.wmnote{display:flex;gap:10px;align-items:flex-start;background:#EEF6F2;border:1px solid #CFE3DA;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.6;color:#22433A;margin:4px 0 4px}
+.wmnote b{color:#0A4F42}
 .filebtn{position:relative;overflow:hidden;display:inline-block}
 .filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .pad-wrap{border:1px solid var(--line);border-radius:10px;background:#fff;position:relative}
@@ -141,6 +144,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
   <!-- 3 證件 -->
   <section id="s-docs" class="card hide">
     <h2>身分證件</h2><p class="sub">請拍攝或上傳清晰、四角完整的影像。</p>
+    <div class="wmnote" role="note"><span aria-hidden="true">🔒</span><span>為保護你的證件，照片會先在<b>你的手機上</b>壓上「<b class="wmtext"></b>」浮水印再上傳，<b>原始照片不會離開你的手機</b>。選好照片後可以先看到加上浮水印的樣子。</span></div>
     <div id="doc-front"></div>
     <div id="doc-back"></div>
     <div class="err" id="eDocs"></div>
@@ -149,7 +153,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
 
   <!-- 4 銀行 -->
   <section id="s-bank" class="card hide">
-    <h2>收款帳戶</h2><p class="sub">款項將匯入以下帳戶。</p>
+    <h2>收款帳戶</h2><p class="sub">款項將匯入以下帳戶。存摺封面同樣會先在你的手機上壓上浮水印再上傳。</p>
     <div id="keepAccBox" class="hide">
       <div class="radio">
         <label><input type="radio" name="acc" value="keep" checked> 沿用 <span id="accTail"></span></label>
@@ -203,7 +207,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
       <img id="sigPreview" alt="簽名預覽">
       <div class="btns" style="margin-top:0"><button id="bResign">重新簽名</button></div>
     </div>
-    <label class="check" style="margin-top:16px"><input type="checkbox" id="esign"> 我同意以電子方式簽署本勞務報酬單，並確認所填資料正確。</label>
+    <label class="check" style="margin-top:16px"><input type="checkbox" id="esign"> <span>我同意以電子方式簽署本勞務報酬單，並確認所填資料正確。<span id="esignWm"></span></span></label>
     <div class="err" id="eSign"></div>
     <div class="btns"><button data-back>上一步</button><button class="pri" id="bSubmit">確認送出</button></div>
   </section>
@@ -281,6 +285,9 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
   call('api_init', T).then(function (r) {
     if (!r.ok) { $('closedMsg').textContent = r.message; show('s-closed'); return; }
     S.init = r;
+    S.wm = r.wm || ('僅供' + r.company.name + '辦理勞務報酬單使用');
+    [].forEach.call(document.querySelectorAll('.wmtext'), function (x) { x.textContent = S.wm; });
+    $('esignWm').textContent = '我上傳的證件影像已加註「' + S.wm + '」浮水印，僅供本次勞務報酬單作業使用。';
     $('coName').textContent = r.company.name;
     if (r.company.logo) { $('logo').src = r.company.logo; $('logo').classList.remove('hide'); }
     if (r.mode === 'closed') { $('closedMsg').textContent = r.message; show('s-closed'); return; }
@@ -327,9 +334,9 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
     $('mailBox').classList.toggle('hide', $('same').checked);
     $('phone').value = p.phone || '';
     $('email').value = p.email || '';
-    buildDoc('front', '身分證正面', p.hasFront, p.frontThumb, p.docsDate);
-    buildDoc('back', '身分證反面', p.hasBack, p.backThumb, p.docsDate);
-    buildDoc('bank', '存摺封面（顯示戶名與帳號）', p.hasBank, p.bankThumb, p.docsDate);
+    buildDoc('front', '身分證正面', p.hasFront, p.frontThumb, p.docsDate, p.oldFront);
+    buildDoc('back', '身分證反面', p.hasBack, p.backThumb, p.docsDate, p.oldBack);
+    buildDoc('bank', '存摺封面（顯示戶名與帳號）', p.hasBank, p.bankThumb, p.docsDate, p.oldBank);
     if (p.hasAccount) {
       $('keepAccBox').classList.remove('hide');
       $('accTail').textContent = (p.bankName || '') + ' ' + (p.accountTail || '');
@@ -359,7 +366,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
   });
 
   /* ---------- 證件元件 ---------- */
-  function buildDoc(kind, label, has, thumb, date) {
+  function buildDoc(kind, label, has, thumb, date, old) {
     var box = $('doc-' + kind);
     box.innerHTML = '';
     var d = document.createElement('div'); d.className = 'doc';
@@ -369,7 +376,8 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
     if (thumb) img.src = thumb; else img.classList.add('hide');
     var right = document.createElement('div');
     var st = document.createElement('div'); st.className = 'st';
-    st.textContent = has ? '已有留存影像' + (date ? '（' + date + '）' : '') + '，可直接沿用' : '尚未上傳';
+    st.textContent = has ? '已有留存影像（含浮水印）' + (date ? '（' + date + '）' : '') + '，可直接沿用' : old ? '先前留存的影像沒有浮水印，請重新上傳一次' : '尚未上傳';
+    if (old && !has) st.className = 'st warn';
     var fb = document.createElement('span'); fb.className = 'filebtn';
     var bt = document.createElement('button'); bt.type = 'button'; bt.textContent = has ? '重新上傳' : '拍照／選擇檔案';
     var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
@@ -379,15 +387,16 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
     S.keep[kind] = !!has; S.up[kind] = false;
     inp.addEventListener('change', function () {
       var f = inp.files && inp.files[0]; if (!f) return;
-      st.className = 'st'; st.innerHTML = '<span class="spin"></span> 壓縮並上傳中…';
+      st.className = 'st'; st.innerHTML = '<span class="spin"></span> 加上浮水印並上傳中…';
       bt.disabled = true;
-      compress(f).then(function (url) {
+      var wm = S.wm + '｜' + ymdSlash(new Date());
+      compress(f, wm).then(function (url) {
         img.src = url; img.classList.remove('hide');
-        return call('api_upload', T, kind, url);
+        return call('api_upload', T, kind, url, wm);
       }).then(function (r) {
         bt.disabled = false;
         if (!r.ok) { st.className = 'st'; st.style.color = 'var(--err)'; st.textContent = r.message; S.up[kind] = false; return; }
-        st.className = 'st ok'; st.style.color = ''; st.textContent = '已上傳 ✓'; S.up[kind] = true; bt.textContent = '重新上傳';
+        st.className = 'st ok'; st.style.color = ''; st.textContent = '已加上浮水印並上傳 ✓'; S.up[kind] = true; bt.textContent = '重新上傳';
       }).catch(function (e) {
         bt.disabled = false; st.className = 'st'; st.style.color = 'var(--err)';
         st.textContent = '無法讀取這張圖片，請改用 JPG 或 PNG。';
@@ -396,7 +405,10 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
     });
   }
 
-  function compress(file) {
+  function ymdSlash(d) { return d.getFullYear() + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + ('0' + d.getDate()).slice(-2); }
+
+  /** 讀入圖片、縮到 1600px，在手機上壓浮水印後輸出 JPEG（原圖不上傳） */
+  function compress(file, wm) {
     return new Promise(function (resolve, reject) {
       var fr = new FileReader();
       fr.onerror = reject;
@@ -411,6 +423,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
           var cx = cv.getContext('2d');
           cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height);
           cx.drawImage(im, 0, 0, cv.width, cv.height);
+          if (wm) watermark(cx, cv.width, cv.height, wm);
           var q = 0.82, out = cv.toDataURL('image/jpeg', q);
           while (out.length > 4.5e6 && q > 0.4) { q -= 0.15; out = cv.toDataURL('image/jpeg', q); }
           resolve(out);
@@ -419,6 +432,32 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
       };
       fr.readAsDataURL(file);
     });
+  }
+
+  /** 浮水印：斜向重複的半透明文字鋪滿整張，底部再加一條完整文字 */
+  function watermark(cx, W, H, text) {
+    var FONT = '"PingFang TC","Noto Sans TC","Noto Sans CJK TC","Microsoft JhengHei",sans-serif';
+    var fs = Math.max(14, Math.round(Math.min(W, H) / 16));
+    cx.save();
+    cx.translate(W / 2, H / 2);
+    cx.rotate(-Math.PI / 7);
+    cx.font = '600 ' + fs + 'px ' + FONT;
+    cx.textAlign = 'center'; cx.textBaseline = 'middle';
+    var tw = cx.measureText(text).width + fs * 3, step = fs * 3.4, R = Math.sqrt(W * W + H * H) / 2 + tw;
+    for (var y = -R, row = 0; y <= R; y += step, row++) {
+      for (var x = -R + (row % 2 ? tw / 2 : 0); x <= R; x += tw) {
+        cx.lineWidth = Math.max(1, fs / 12); cx.strokeStyle = 'rgba(255,255,255,0.35)'; cx.strokeText(text, x, y);
+        cx.fillStyle = 'rgba(200,30,30,0.30)'; cx.fillText(text, x, y);
+      }
+    }
+    cx.restore();
+    var bfs = Math.max(13, Math.round(Math.min(W, H) / 22));
+    cx.font = '700 ' + bfs + 'px ' + FONT;
+    while (cx.measureText(text).width > W * 0.92 && bfs > 10) { bfs--; cx.font = '700 ' + bfs + 'px ' + FONT; }
+    var bh = Math.round(bfs * 1.9);
+    cx.fillStyle = 'rgba(0,0,0,0.62)'; cx.fillRect(0, H - bh, W, bh);
+    cx.fillStyle = '#fff'; cx.textAlign = 'center'; cx.textBaseline = 'middle';
+    cx.fillText(text, W / 2, H - bh / 2);
   }
 
   /* ---------- 3 證件 ---------- */
@@ -458,7 +497,7 @@ table.sum tr.net td{font-weight:700;font-size:17px;border-bottom:none}
       if (!$('holder').value.trim()) return err('eBank', '請填寫戶名。');
       if (!S.up.bank) return err('eBank', '更換或新增帳戶時，請上傳該帳戶的存摺封面。');
     } else if (!(S.up.bank || S.keep.bank)) {
-      return err('eBank', '請上傳存摺封面。');
+      return err('eBank', S.v && S.v.prefill && S.v.prefill.oldBank ? '先前留存的存摺影像沒有浮水印，請重新上傳存摺封面。' : '請上傳存摺封面。');
     }
     var b = this; busy(b, true, '計算中…');
     call('api_quote', T, { resident183: radio('r183'), nhi: radio('nhi') }).then(function (r) {

@@ -1062,6 +1062,7 @@ function calcWithholding_(input, rules, consts) {
       '<input type="color" aria-label="自訂顏色" value="' + esc(cur) + '" data-in="csColorPick" style="width:44px;height:44px;padding:0;border:1px solid var(--line);border-radius:50%;cursor:pointer"></div>' +
       '<input type="hidden" data-key="填寫頁主色" id="cs-color" value="' + esc(cur) + '"></div></div>' +
       '<div class="field"><label for="cs-net">實付金額備註</label><textarea id="cs-net" data-key="實付備註" rows="2" maxlength="200">' + esc(v['實付備註']) + '</textarea><span class="xs muted">印在報酬單「實付金額」下方，也會顯示在所得人確認金額的畫面與撥款通知</span></div>' +
+      '<div class="field"><label for="cs-wm">證件浮水印文字</label><input id="cs-wm" type="text" data-key="證件浮水印文字" maxlength="40" value="' + esc(v['證件浮水印文字'] || '僅供{公司}辦理勞務報酬單使用') + '"><span class="xs muted">所得人上傳身分證與存摺時，會先在手機上把這段文字壓在照片上（原始照片不會上傳）。{公司} 會換成公司名稱，後面自動加上上傳日期。</span></div>' +
       '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">' +
       inp('單號前綴', '單號前綴', { cls: 'num', max: 6 }) + inp('連結有效天數', '連結有效天數', { type: 'number', cls: 'num' }) + inp('副本下載天數', '副本下載天數', { type: 'number', cls: 'num' }) +
       '<div class="field"><label for="cs-cat">預設所得類別</label><select id="cs-cat" data-key="預設所得類別">' + ['50', '9A', '9B', '92'].map(function (c) { return '<option value="' + c + '"' + (String(v['預設所得類別']).toUpperCase() === c ? ' selected' : '') + '>' + esc(categoryLabel_(c)) + '</option>'; }).join('') + '</select></div>' +
