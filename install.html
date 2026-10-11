@@ -13,25 +13,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- SEO -->
-<title>勞報單系統安裝說明與免費試用 180 天｜勞報單簽核系統</title>
-<meta name="description" content="免費試用勞報單簽核系統 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<title>勞報單系統安裝說明與免費試用 180 天｜Nomad Workbench</title>
+<meta name="description" content="免費試用 Nomad Workbench 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://hanslintw.github.io/install.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0E6B5A">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="勞報單簽核系統｜REMON nomad">
+<meta property="og:site_name" content="Nomad Workbench｜REMON nomad">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:title" content="勞報單系統安裝說明與免費試用 180 天｜勞報單簽核系統">
-<meta property="og:description" content="免費試用勞報單簽核系統 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta property="og:title" content="勞報單系統安裝說明與免費試用 180 天｜Nomad Workbench">
+<meta property="og:description" content="免費試用 Nomad Workbench 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta property="og:url" content="https://hanslintw.github.io/install.html">
 <meta property="og:image" content="https://hanslintw.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="勞報單系統安裝說明與免費試用 180 天｜勞報單簽核系統">
-<meta name="twitter:description" content="免費試用勞報單簽核系統 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta name="twitter:title" content="勞報單系統安裝說明與免費試用 180 天｜Nomad Workbench">
+<meta name="twitter:description" content="免費試用 Nomad Workbench 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta name="twitter:image" content="https://hanslintw.github.io/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"為什麼一定要建立 Google Cloud 專案？","acceptedAnswer":{"@type":"Answer","text":"系統要靠它安全地更新你帳號裡的程式。法規參數或功能更新時，只要在後台按一下更新，不用重新安裝。不需要付費，也不用綁信用卡。"}},{"@type":"Question","name":"安裝時出現「Google 尚未驗證這個應用程式」安全嗎？","acceptedAnswer":{"@type":"Answer","text":"這是因為程式複製到你自己的帳號裡執行，Google 視為你自己的程式，不會經過審查。資料只在你的帳號裡流動，不會送到第三方。"}},{"@type":"Question","name":"安裝勞報單系統需要多久？","acceptedAnswer":{"@type":"Answer","text":"依安裝說明約 30 分鐘，安裝精靈會自動檢查每一步，做錯會直接提示。"}},{"@type":"Question","name":"系統供應商看得到我的資料嗎？","acceptedAnswer":{"@type":"Answer","text":"看不到。所有資料都存在你自己的 Google 帳號，授權中心只會收到每月張數這類統計數字。"}}]}</script>
 <!-- /SEO -->
@@ -64,7 +64,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
 </head>
 <body>
 <div class="wrap">
-  <header><a href="index.html" style="display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none"><div class="mk">勞</div><div><b>勞報單簽核系統</b><span>安裝說明</span></div></a></header>
+  <header><a href="index.html" style="display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none"><div class="mk">勞</div><div><b>Nomad Workbench</b><span>安裝說明</span></div></a></header>
 
   <section class="card">
     <h1>自行安裝說明</h1>
@@ -163,7 +163,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
   <section class="card step" id="s6"><div class="num">6</div><div>
     <h2>開啟安裝精靈，建立資料庫</h2>
     <ol>
-      <li>回到試算表，重新整理頁面，上方會出現「勞報單」選單。選「<b>勞報單 › 安裝精靈</b>」。</li>
+      <li>回到試算表，重新整理頁面，上方會出現「Nomad Workbench」選單。選「<b>Nomad Workbench › 安裝精靈</b>」。</li>
       <li>Google 會要求授權：選你的帳號 → 若出現「<b>Google 尚未驗證這個應用程式</b>」，按「進階」→「前往 勞報單系統（不安全）」→ 勾選全部權限 →「繼續」。</li>
       <li>右側的安裝精靈會檢查前面的步驟。前面幾項都打勾後，在「建立資料庫與資料夾」按「<b>建立</b>」。精靈最上方的「<b>重新檢查</b>」按鈕隨時可以按。</li>
     </ol>
@@ -208,7 +208,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
   var MAIL = 'lr@remonnomad.com';
   var say = function (t, cls) { msg.textContent = t; msg.className = cls || ''; };
   if (!window.LR_CENTER_URL) {
-    f.innerHTML = '<p>線上申請即將開放。現在請來信 <a href="mailto:' + MAIL + '?subject=' + encodeURIComponent('申請試用勞報單簽核系統') + '">' + MAIL + '</a>，附上公司名稱，我們會寄試用金鑰給你。</p>';
+    f.innerHTML = '<p>線上申請即將開放。現在請來信 <a href="mailto:' + MAIL + '?subject=' + encodeURIComponent('申請試用 Nomad Workbench') + '">' + MAIL + '</a>，附上公司名稱，我們會寄試用金鑰給你。</p>';
     return;
   }
   f.addEventListener('submit', function (e) {
