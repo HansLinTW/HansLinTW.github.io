@@ -13,8 +13,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- SEO -->
-<title>勞報單系統安裝說明與免費試用 180 天｜Nomad Workbench</title>
-<meta name="description" content="免費試用 Nomad Workbench 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<title>Nomad Workbench 安裝說明與免費試用 180 天</title>
+<meta name="description" content="免費試用 Nomad Workbench 180 天（勞報單、往來、帳務）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://hanslintw.github.io/install.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -23,15 +23,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nomad Workbench｜REMON nomad">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:title" content="勞報單系統安裝說明與免費試用 180 天｜Nomad Workbench">
-<meta property="og:description" content="免費試用 Nomad Workbench 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta property="og:title" content="Nomad Workbench 安裝說明與免費試用 180 天">
+<meta property="og:description" content="免費試用 Nomad Workbench 180 天（勞報單、往來、帳務）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta property="og:url" content="https://hanslintw.github.io/install.html">
 <meta property="og:image" content="https://hanslintw.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="勞報單系統安裝說明與免費試用 180 天｜Nomad Workbench">
-<meta name="twitter:description" content="免費試用 Nomad Workbench 180 天：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta name="twitter:title" content="Nomad Workbench 安裝說明與免費試用 180 天">
+<meta name="twitter:description" content="免費試用 Nomad Workbench 180 天（勞報單、往來、帳務）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta name="twitter:image" content="https://hanslintw.github.io/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"為什麼一定要建立 Google Cloud 專案？","acceptedAnswer":{"@type":"Answer","text":"系統要靠它安全地更新你帳號裡的程式。法規參數或功能更新時，只要在後台按一下更新，不用重新安裝。不需要付費，也不用綁信用卡。"}},{"@type":"Question","name":"安裝時出現「Google 尚未驗證這個應用程式」安全嗎？","acceptedAnswer":{"@type":"Answer","text":"這是因為程式複製到你自己的帳號裡執行，Google 視為你自己的程式，不會經過審查。資料只在你的帳號裡流動，不會送到第三方。"}},{"@type":"Question","name":"安裝勞報單系統需要多久？","acceptedAnswer":{"@type":"Answer","text":"依安裝說明約 30 分鐘，安裝精靈會自動檢查每一步，做錯會直接提示。"}},{"@type":"Question","name":"系統供應商看得到我的資料嗎？","acceptedAnswer":{"@type":"Answer","text":"看不到。所有資料都存在你自己的 Google 帳號，授權中心只會收到每月張數這類統計數字。"}}]}</script>
 <!-- /SEO -->
@@ -64,10 +64,10 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
 </head>
 <body>
 <div class="wrap">
-  <header><a href="index.html" style="display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none"><div class="mk">勞</div><div><b>Nomad Workbench</b><span>安裝說明</span></div></a></header>
+  <header><a href="index.html" style="display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none"><div class="mk">N</div><div><b>Nomad Workbench</b><span>安裝說明</span></div></a></header>
 
   <section class="card">
-    <h1>自行安裝說明</h1>
+    <h1>Nomad Workbench 自行安裝說明</h1>
     <p class="lead">約 30 分鐘。全程在貴公司自己的 Google 帳號中操作，系統供應商看不到你的任何資料。</p>
     <h2>開始前請準備</h2>
     <ul>
@@ -91,7 +91,8 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
 
   <section class="card" id="signup">
     <h2 style="margin-top:0">免費試用 180 天</h2>
-    <p>填寫後，試用金鑰會立即寄到你的信箱。試用 180 天，期間每月可發送 20 張報酬單，資料一樣存放在你自己的 Google 帳號。</p>
+    <p>填寫後，試用金鑰會立即寄到你的信箱。試用 180 天，期間勞報單每月可發送 20 張，資料一樣存放在你自己的 Google 帳號。</p>
+    <p class="sub-tip">試用金鑰預設開通「勞報單」模組。想一起試用客戶案件管理的「往來」與記帳的「帳務」模組，請來信 <a href="mailto:lr@remonnomad.com?subject=%E7%94%B3%E8%AB%8B%E5%BE%80%E4%BE%86%E8%88%87%E5%B8%B3%E5%8B%99%E6%A8%A1%E7%B5%84%E8%A9%A6%E7%94%A8">lr@remonnomad.com</a> 告知，我們會為你的試用金鑰加開。</p>
     <form id="sf" novalidate>
       <div class="f2">
         <label class="fld"><span>公司或工作室名稱 <i>*</i></span><input name="company" maxlength="60" autocomplete="organization" required></label>
