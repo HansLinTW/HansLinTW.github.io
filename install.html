@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- SEO -->
 <title>Nomad Workbench 安裝說明與免費試用 180 天</title>
-<meta name="description" content="免費試用 Nomad Workbench 180 天（勞報單、往來、帳務）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta name="description" content="免費試用 Nomad Workbench 180 天（往來、帳務、勞報單）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://hanslintw.github.io/install.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -24,16 +24,16 @@
 <meta property="og:site_name" content="Nomad Workbench｜REMON nomad">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="Nomad Workbench 安裝說明與免費試用 180 天">
-<meta property="og:description" content="免費試用 Nomad Workbench 180 天（勞報單、往來、帳務）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta property="og:description" content="免費試用 Nomad Workbench 180 天（往來、帳務、勞報單）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta property="og:url" content="https://hanslintw.github.io/install.html">
 <meta property="og:image" content="https://hanslintw.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nomad Workbench 安裝說明與免費試用 180 天">
-<meta name="twitter:description" content="免費試用 Nomad Workbench 180 天（勞報單、往來、帳務）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
+<meta name="twitter:description" content="免費試用 Nomad Workbench 180 天（往來、帳務、勞報單）：填表後金鑰自動寄到信箱，依 8 個步驟約 30 分鐘完成安裝（Google Cloud 專案、建立副本、部署、授權金鑰），安裝精靈全程自動檢查。">
 <meta name="twitter:image" content="https://hanslintw.github.io/og-image.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"為什麼一定要建立 Google Cloud 專案？","acceptedAnswer":{"@type":"Answer","text":"系統要靠它安全地更新你帳號裡的程式。法規參數或功能更新時，只要在後台按一下更新，不用重新安裝。不需要付費，也不用綁信用卡。"}},{"@type":"Question","name":"安裝時出現「Google 尚未驗證這個應用程式」安全嗎？","acceptedAnswer":{"@type":"Answer","text":"這是因為程式複製到你自己的帳號裡執行，Google 視為你自己的程式，不會經過審查。資料只在你的帳號裡流動，不會送到第三方。"}},{"@type":"Question","name":"安裝勞報單系統需要多久？","acceptedAnswer":{"@type":"Answer","text":"依安裝說明約 30 分鐘，安裝精靈會自動檢查每一步，做錯會直接提示。"}},{"@type":"Question","name":"系統供應商看得到我的資料嗎？","acceptedAnswer":{"@type":"Answer","text":"看不到。所有資料都存在你自己的 Google 帳號，授權中心只會收到每月張數這類統計數字。"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"為什麼一定要建立 Google Cloud 專案？","acceptedAnswer":{"@type":"Answer","text":"系統要靠它安全地更新你帳號裡的程式。法規參數或功能更新時，只要在後台按一下更新，不用重新安裝。不需要付費，也不用綁信用卡。"}},{"@type":"Question","name":"安裝時出現「Google 尚未驗證這個應用程式」安全嗎？","acceptedAnswer":{"@type":"Answer","text":"這是因為程式複製到你自己的帳號裡執行，Google 視為你自己的程式，不會經過審查。資料只在你的帳號裡流動，不會送到第三方。"}},{"@type":"Question","name":"安裝 Nomad Workbench 需要多久？","acceptedAnswer":{"@type":"Answer","text":"依安裝說明約 30 分鐘，安裝精靈會自動檢查每一步，做錯會直接提示。"}},{"@type":"Question","name":"系統供應商看得到我的資料嗎？","acceptedAnswer":{"@type":"Answer","text":"看不到。所有資料都存在你自己的 Google 帳號，授權中心只會收到每月張數這類統計數字。"}}]}</script>
 <!-- /SEO -->
 <link rel="stylesheet" href="style.css">
 <style>
@@ -92,7 +92,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
   <section class="card" id="signup">
     <h2 style="margin-top:0">免費試用 180 天</h2>
     <p>填寫後，試用金鑰會立即寄到你的信箱。試用 180 天，期間勞報單每月可發送 20 張，資料一樣存放在你自己的 Google 帳號。</p>
-    <p class="sub-tip">試用金鑰預設開通「勞報單」模組。想一起試用客戶案件管理的「往來」與記帳的「帳務」模組，請來信 <a href="mailto:lr@remonnomad.com?subject=%E7%94%B3%E8%AB%8B%E5%BE%80%E4%BE%86%E8%88%87%E5%B8%B3%E5%8B%99%E6%A8%A1%E7%B5%84%E8%A9%A6%E7%94%A8">lr@remonnomad.com</a> 告知，我們會為你的試用金鑰加開。</p>
+    <p class="sub-tip">想試用客戶案件管理的「往來」與記帳的「帳務」模組，請來信 <a href="mailto:lr@remonnomad.com?subject=%E7%94%B3%E8%AB%8B%E5%BE%80%E4%BE%86%E8%88%87%E5%B8%B3%E5%8B%99%E6%A8%A1%E7%B5%84%E8%A9%A6%E7%94%A8">lr@remonnomad.com</a> 告知，我們會為你的試用金鑰加開（試用金鑰預設只開通「勞報單」模組）。</p>
     <form id="sf" novalidate>
       <div class="f2">
         <label class="fld"><span>公司或工作室名稱 <i>*</i></span><input name="company" maxlength="60" autocomplete="organization" required></label>
@@ -100,7 +100,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
         <label class="fld"><span>Email <i>*</i></span><input name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" required></label>
         <label class="fld"><span>電話</span><input name="phone" type="tel" maxlength="20" autocomplete="tel"></label>
       </div>
-      <label class="fld"><span>每月大約開幾張勞報單</span>
+      <label class="fld"><span>若會用到勞報單，每月大約幾張（選填）</span>
         <select name="volume"><option value="">請選擇</option><option>10 張以下</option><option>10–50 張</option><option>50–200 張</option><option>200 張以上</option></select></label>
       <label class="hp" aria-hidden="true">網站<input name="website" tabindex="-1" autocomplete="off"></label>
       <label class="chk"><input type="checkbox" name="consent"> 我已閱讀並同意<a href="privacy.html" target="_blank">隱私權政策</a>與<a href="terms.html" target="_blank">服務條款</a></label>
@@ -113,7 +113,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
     <h2>建立 Google Cloud 專案並啟用 API</h2>
     <p>系統需要一個屬於你自己的 Google Cloud 專案，才能自動接收新版本與法規參數。<b>不需要付費，也不用綁信用卡。</b>請用之後要存放資料的那個 Google 帳號登入。</p>
     <ol>
-      <li>開啟 <a href="https://console.cloud.google.com/projectcreate" target="_blank">建立專案</a>。專案名稱只能用英文、數字和連字號，例如 <span class="kbd">lr-slip-acme</span>，按「建立」。</li>
+      <li>開啟 <a href="https://console.cloud.google.com/projectcreate" target="_blank">建立專案</a>。專案名稱只能用英文、數字和連字號，例如 <span class="kbd">nwb-acme</span>，按「建立」。</li>
       <li>開啟 <a href="https://console.cloud.google.com/flows/enableapi?apiid=script.googleapis.com,drive.googleapis.com,sheets.googleapis.com,docs.googleapis.com" target="_blank">一次啟用 4 個 API</a>。上方確認選的是剛建立的專案，按「下一步」→「啟用」。會啟用 Apps Script、Drive、Sheets、Docs 這 4 個 API。</li>
     </ol>
   </div></section>
@@ -124,7 +124,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
     <table>
       <tr><th></th><th>公司 Workspace 帳號</th><th>個人 Gmail</th></tr>
       <tr><td>目標對象</td><td><b>內部</b></td><td><b>外部</b></td></tr>
-      <tr><td>應用程式名稱</td><td colspan="2"><span class="kbd">勞報單系統</span>（可用中文）</td></tr>
+      <tr><td>應用程式名稱</td><td colspan="2"><span class="kbd">Nomad Workbench</span>（也可以用縮寫 <span class="kbd">NWB</span>）</td></tr>
       <tr><td>使用者支援 Email、聯絡資訊</td><td colspan="2">你自己的 Email</td></tr>
     </table>
     <p><b>個人 Gmail 還要多做兩件事：</b></p>
@@ -165,7 +165,7 @@ table{table-layout:auto}td,th{overflow-wrap:anywhere}
     <h2>開啟安裝精靈，建立資料庫</h2>
     <ol>
       <li>回到試算表，重新整理頁面，上方會出現「Nomad Workbench」選單。選「<b>Nomad Workbench › 安裝精靈</b>」。</li>
-      <li>Google 會要求授權：選你的帳號 → 若出現「<b>Google 尚未驗證這個應用程式</b>」，按「進階」→「前往 勞報單系統（不安全）」→ 勾選全部權限 →「繼續」。</li>
+      <li>Google 會要求授權：選你的帳號 → 若出現「<b>Google 尚未驗證這個應用程式</b>」，按「進階」→「前往 Nomad Workbench（不安全）」→ 勾選全部權限 →「繼續」。</li>
       <li>右側的安裝精靈會檢查前面的步驟。前面幾項都打勾後，在「建立資料庫與資料夾」按「<b>建立</b>」。精靈最上方的「<b>重新檢查</b>」按鈕隨時可以按。</li>
     </ol>
     <div class="tip"><b>為什麼會顯示「尚未驗證」？</b>因為這個程式是複製到你自己帳號裡執行的，Google 把它視為你自己寫的程式，所以不會經過 Google 審查。資料只在你的帳號裡流動，不會送到第三方。系統使用的權限與用途，請見<a href="privacy.html">隱私權政策</a>。</div>
