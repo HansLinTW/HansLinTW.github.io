@@ -3,4 +3,4 @@ Allow: /
 Disallow: /demo/admin.html
 Disallow: /demo/payee.html
 
-Sitemap: https://hanslintw.github.io/sitemap.xml
+Sitemap: https://workbench.remonnomad.com/sitemap.xml
