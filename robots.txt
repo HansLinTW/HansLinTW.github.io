@@ -1,6 +1,2 @@
 User-agent: *
 Allow: /
-Disallow: /demo/admin.html
-Disallow: /demo/payee.html
-
-Sitemap: https://hanslintw.github.io/sitemap.xml
